@@ -10,6 +10,8 @@ import Dues from './pages/Dues';
 import Rooms from './pages/Rooms';
 import Notices from './pages/Notices';
 import StudentPortal from './pages/StudentPortal';
+import Register from './pages/Register';
+import Registrations from './pages/Registrations';
 
 function ProtectedAdmin({ children }) {
   const { isAdmin } = useAuth();
@@ -29,6 +31,7 @@ function Layout({ children }) {
     '/': 'Dashboard', '/students': 'Students', '/payments': 'Payments',
     '/dues': 'Dues Tracker', '/rooms': 'Rooms', '/notices': 'Notices',
     '/portal': 'My Portal', '/portal/pay': 'Pay Rent',
+    '/registrations': 'Registrations',
   };
   const title = titles[location.pathname] || 'Mess Manager';
 
@@ -73,12 +76,16 @@ export default function App() {
         <Login />
       } />
 
+      {/* Public route — no login needed */}
+      <Route path="/register" element={<Register />} />
+
       {/* Admin routes */}
       <Route path="/" element={<ProtectedAdmin><Layout><Dashboard /></Layout></ProtectedAdmin>} />
       <Route path="/students" element={<ProtectedAdmin><Layout><Students /></Layout></ProtectedAdmin>} />
       <Route path="/payments" element={<ProtectedAdmin><Layout><Payments /></Layout></ProtectedAdmin>} />
       <Route path="/dues" element={<ProtectedAdmin><Layout><Dues /></Layout></ProtectedAdmin>} />
       <Route path="/rooms" element={<ProtectedAdmin><Layout><Rooms /></Layout></ProtectedAdmin>} />
+      <Route path="/registrations" element={<ProtectedAdmin><Layout><Registrations /></Layout></ProtectedAdmin>} />
       <Route path="/notices" element={
         <Layout>
           {isAdmin ? <Notices /> : studentSession ? <Notices /> : <Navigate to="/login" />}
