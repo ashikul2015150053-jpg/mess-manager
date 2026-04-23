@@ -8,6 +8,7 @@ const adminNav = [
   { to: '/dues', label: 'Dues Tracker', icon: '⚠️' },
   { to: '/rooms', label: 'Rooms', icon: '🏠' },
   { to: '/notices', label: 'Notices', icon: '📢' },
+  { to: '/registrations', label: 'Registrations', icon: '📋' },
 ];
 
 const studentNav = [
